@@ -1,0 +1,67 @@
+[
+    {
+        "id": 1,
+        "title": "E-Commerce Microservices Architecture",
+        "description": "Hexagonal Architecture ve Domain-Driven Design (DDD) prensipleriyle tasarlanmış mikroservis mimarisi. OpenFeign ile senkron, Kafka ile asenkron event-driven iletişim. Docker ile konteynerize edilmiş servisler, AWS üzerinde deployment pipeline yönetimi.",
+        "technologies": [
+            "Java",
+            "Spring Boot",
+            "Kafka",
+            "Docker",
+            "Hexagonal Architecture",
+            "DDD",
+            "OpenFeign",
+            "AWS"
+        ],
+        "github": "https://github.com/mehmetberkk",
+        "demo": null,
+        "image": null,
+        "featured": true
+    },
+    {
+        "id": 2,
+        "title": "Car Rental Management System",
+        "description": "Agile metodolojisiyle geliştirilen full-stack araç kiralama platformu. Spring Security ve JWT ile güvenli kimlik doğrulama, e-posta tabanlı hesap aktivasyonu. Araç envanteri, kiralama işlemleri ve kullanıcı yönetimi için RESTful API tasarımı.",
+        "technologies": [
+            "Java",
+            "Spring Boot",
+            "Spring Security",
+            "JWT",
+            "REST API"
+        ],
+        "github": "https://github.com/mehmetberkk",
+        "demo": null,
+        "image": null,
+        "featured": true
+    },
+    {
+        "id": 3,
+        "title": "Automated Review Generator Bot",
+        "description": "Trendyol'dan ürün verilerini toplayan Python Selenium botu. ChatGPT API entegrasyonu ile toplanan verilere dayalı akıllı, bağlama uygun ürün değerlendirmeleri üreten otomasyon sistemi.",
+        "technologies": [
+            "Python",
+            "Selenium",
+            "OpenAI API",
+            "Web Scraping"
+        ],
+        "github": "https://github.com/mehmetberkk",
+        "demo": null,
+        "image": null,
+        "featured": true
+    },
+    {
+        "id": 4,
+        "title": "Transportation Database Integration",
+        "description": "Büyük ulaşım platformlarının (O-bilet, THY, Martı) ER modellerinin analizi ve tersine mühendisliği. Birden fazla şemanın birleşik bir Entity-Relationship modeline dönüştürülmesi ve MSSQL üzerinde implementasyonu.",
+        "technologies": [
+            "MSSQL",
+            "Database Modeling",
+            "ER Diagrams",
+            "Reverse Engineering"
+        ],
+        "github": "https://github.com/mehmetberkk",
+        "demo": null,
+        "image": null,
+        "featured": false
+    }
+]

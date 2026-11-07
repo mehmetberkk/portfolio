@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GitHub Repositories API Contract",
+  "description": "Expected response contract from https://api.github.com/users/{username}/repos",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "name",
+      "html_url",
+      "fork",
+      "archived",
+      "stargazers_count",
+      "forks_count",
+      "pushed_at"
+    ],
+    "properties": {
+      "id": {
+        "type": "number",
+        "description": "Unique GitHub repository ID"
+      },
+      "name": {
+        "type": "string",
+        "description": "Repository display name"
+      },
+      "description": {
+        "type": ["string", "null"],
+        "description": "Repository description"
+      },
+      "html_url": {
+        "type": "string",
+        "format": "uri",
+        "description": "Repository web URL"
+      },
+      "homepage": {
+        "type": ["string", "null"],
+        "description": "Optional live demo URL"
+      },
+      "language": {
+        "type": ["string", "null"],
+        "description": "Primary programming language"
+      },
+      "topics": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of repository topics/tags"
+      },
+      "stargazers_count": {
+        "type": "number",
+        "minimum": 0,
+        "description": "GitHub star count"
+      },
+      "forks_count": {
+        "type": "number",
+        "minimum": 0,
+        "description": "Fork count"
+      },
+      "fork": {
+        "type": "boolean",
+        "description": "Whether the repository is a fork"
+      },
+      "archived": {
+        "type": "boolean",
+        "description": "Whether the repository is archived"
+      },
+      "pushed_at": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Timestamp of last push/commit"
+      }
+    }
+  }
+}
+

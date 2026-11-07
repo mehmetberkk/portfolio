@@ -2,17 +2,12 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { useLanguage } from '../context/LanguageContext';
 import './Navbar.css';
-
-const navLinks = [
-    { label: 'Ana Sayfa', href: '#hero' },
-    { label: 'Hakkımda', href: '#about' },
-    { label: 'Projeler', href: '#projects' },
-    { label: 'İletişim', href: '#contact' },
-];
 
 export default function Navbar() {
     const { theme, toggleTheme } = useTheme();
+    const { language, toggleLanguage, t } = useLanguage();
     const [scrolled, setScrolled] = useState(false);
     const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -43,7 +38,7 @@ export default function Navbar() {
 
                 <div className="navbar__right">
                     <ul className="navbar__links">
-                        {navLinks.map(link => (
+                        {t.nav.links.map(link => (
                             <li key={link.href}>
                                 <a href={link.href} className="navbar__link">{link.label}</a>
                             </li>
@@ -51,9 +46,20 @@ export default function Navbar() {
                     </ul>
 
                     <button
+                        className="navbar__lang-toggle"
+                        onClick={toggleLanguage}
+                        aria-label={t.nav.langAria}
+                        title={t.nav.langAria}
+                    >
+                        <span className={`navbar__lang-code ${language === 'tr' ? 'navbar__lang-code--active' : ''}`}>TR</span>
+                        <span className="navbar__lang-separator">|</span>
+                        <span className={`navbar__lang-code ${language === 'en' ? 'navbar__lang-code--active' : ''}`}>EN</span>
+                    </button>
+
+                    <button
                         className="navbar__theme-toggle"
                         onClick={toggleTheme}
-                        aria-label={theme === 'dark' ? 'Açık temaya geç' : 'Koyu temaya geç'}
+                        aria-label={theme === 'dark' ? t.nav.themeAriaDark : t.nav.themeAriaLight}
                     >
                         <AnimatePresence mode="wait">
                             {theme === 'dark' ? (
@@ -83,7 +89,7 @@ export default function Navbar() {
                     <button
                         className="navbar__hamburger"
                         onClick={() => setMobileOpen(!mobileOpen)}
-                        aria-label="Menüyü aç/kapa"
+                        aria-label={t.nav.menuAria}
                     >
                         {mobileOpen ? <X size={24} /> : <Menu size={24} />}
                     </button>
@@ -100,7 +106,7 @@ export default function Navbar() {
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3 }}
                     >
-                        {navLinks.map((link, i) => (
+                        {t.nav.links.map((link, i) => (
                             <motion.a
                                 key={link.href}
                                 href={link.href}

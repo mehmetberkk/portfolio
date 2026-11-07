@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
-import { Mail, Github, Copy, Check } from 'lucide-react';
+import { Mail, Github, Linkedin, Copy, Check } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import { useInView } from './useInView';
+import { useLanguage } from '../context/LanguageContext';
 import LeetCodeIcon from '../icons/LeetCodeIcon';
 import './Contact.css';
 
@@ -9,11 +10,13 @@ const EMAIL = 'mehmetberkbozkurt18@gmail.com';
 
 const socials = [
     { label: 'GitHub', href: 'https://github.com/mehmetberkk', icon: Github },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/mehmet-berk-bozkurt', icon: Linkedin },
     { label: 'LeetCode', href: 'https://leetcode.com/u/mberkkk', icon: LeetCodeIcon },
 ];
 
 export default function Contact() {
     const { ref, inView } = useInView(0.2);
+    const { t } = useLanguage();
     const [copied, setCopied] = useState(false);
     const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -42,7 +45,7 @@ export default function Contact() {
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.6 }}
                 >
-                    <h2 className="section-title">İletişim</h2>
+                    <h2 className="section-title">{t.contact.title}</h2>
                 </motion.div>
 
                 <motion.div
@@ -54,7 +57,7 @@ export default function Contact() {
                     <div className="contact__email-block">
                         <div className="contact__email-label">
                             <Mail size={18} />
-                            <span>E-posta</span>
+                            <span>{t.contact.emailLabel}</span>
                         </div>
                         <div className="contact__email-row">
                             <a href={`mailto:${EMAIL}`} className="contact__email-address">
@@ -63,10 +66,10 @@ export default function Contact() {
                             <button
                                 className="contact__copy-btn"
                                 onClick={copyEmail}
-                                aria-label="E-postayı kopyala"
+                                aria-label={t.contact.copyAria}
                             >
                                 {copied ? <Check size={16} /> : <Copy size={16} />}
-                                <span>{copied ? 'Kopyalandı!' : 'Kopyala'}</span>
+                                <span>{copied ? t.contact.copied : t.contact.copy}</span>
                             </button>
                         </div>
                     </div>

@@ -1,0 +1,138 @@
+import type { Translations } from '../types/language';
+
+export const translations: Record<'tr' | 'en', Translations> = {
+  tr: {
+    nav: {
+      links: [
+        { label: 'Ana Sayfa', href: '#hero' },
+        { label: 'Hakkımda', href: '#about' },
+        { label: 'Projeler', href: '#projects' },
+        { label: 'İletişim', href: '#contact' },
+      ],
+      langAria: 'Dili İngilizceye değiştir',
+      themeAriaDark: 'Açık temaya geç',
+      themeAriaLight: 'Koyu temaya geç',
+      menuAria: 'Menüyü aç/kapa',
+    },
+    hero: {
+      tag: '~/Mehmet Berk Bozkurt',
+      greeting: 'Merhaba,',
+      intro: 'ben',
+      name: 'Mehmet Berk Bozkurt',
+      roles: ['Software Developer', 'Spring Boot', 'Mikroservisler', 'Spec-Driven Development'],
+      description:
+        'Java ekosistemi ve Mikroservis mimarisi üzerine güçlü bir temele sahip, yapay zekayı etkin kullanan bir yazılım geliştiriciyim. Temiz, verimli ve güvenli kod yazmaya odaklanıyorum.',
+      viewProjects: 'Projelerimi Gör',
+      contactMe: 'İletişime Geç',
+      codeFilename: 'Developer.java',
+      codeRole: 'Software Developer',
+      codeMotto: 'Clean, efficient and secure code.',
+      scrollAria: 'Aşağı kaydır',
+    },
+    about: {
+      title: 'Hakkımda',
+      subtitle: 'Güvenli kod yazmaya çalışan bir yazılım geliştiricisiyim.',
+      terminalTitle: 'about.sh',
+      command: 'cat hakkımda.txt',
+      bioParagraphs: [
+        'Ege Üniversitesi Bilgisayar Mühendisliği mezunuyum. Java ekosistemi ve Mikroservis mimarisi üzerine güçlü bir temele sahibim.',
+        'Yaptığım Siber Güvenlik stajımda OWASP Top 10 metodolojisiyle web uygulamalarında penetrasyon testleri gerçekleştirdim. SQL Injection, XSS ve IDOR gibi kritik açıklıkları tespit ettim.',
+        'Spring Boot ile güvenilir backend uygulamaları geliştirmeye, temiz, verimli ve güvenli kod yazmaya çalışıyorum.',
+      ],
+      skills: [
+        { category: 'Diller', items: ['Java', 'Python', 'SQL'] },
+        { category: 'Frameworks', items: ['Spring Boot', 'Hibernate', 'Spring Security', 'Selenium'] },
+        { category: 'Araçlar & Teknolojiler', items: ['Docker', 'Kafka', 'Eureka', 'Feign', 'Zookeeper', 'Git', 'PostgreSQL', 'MSSQL', 'Linux'] },
+        { category: 'Mimari & Metodoloji', items: ['Microservices', 'Hexagonal Architecture', 'DDD', 'REST API', 'Agile/Scrum'] },
+        { category: 'Güvenlik', items: ['OWASP Top 10', 'Penetration Testing', 'SQLi', 'XSS', 'IDOR'] },
+      ],
+    },
+    projects: {
+      title: 'Projeler',
+      subtitle: 'GitHub üzerinden dinamik olarak senkronize edilen açık kaynaklı çalışmalarım.',
+      sourceCode: 'Kaynak Kod',
+      liveDemo: 'Canlı Demo',
+      prevSlideAria: 'Önceki projeler',
+      nextSlideAria: 'Sonraki projeler',
+      errorTitle: 'Projeler Yüklenemedi',
+      errorCta: 'GitHub Profilimi Ziyaret Edin',
+    },
+    contact: {
+      title: 'İletişim',
+      emailLabel: 'E-posta',
+      copy: 'Kopyala',
+      copied: 'Kopyalandı!',
+      copyAria: 'E-postayı kopyala',
+    },
+    footer: {
+      rights: 'Tüm hakları saklıdır.',
+    },
+  },
+  en: {
+    nav: {
+      links: [
+        { label: 'Home', href: '#hero' },
+        { label: 'About', href: '#about' },
+        { label: 'Projects', href: '#projects' },
+        { label: 'Contact', href: '#contact' },
+      ],
+      langAria: 'Switch language to Turkish',
+      themeAriaDark: 'Switch to light theme',
+      themeAriaLight: 'Switch to dark theme',
+      menuAria: 'Toggle navigation menu',
+    },
+    hero: {
+      tag: '~/Mehmet Berk Bozkurt',
+      greeting: 'Hello,',
+      intro: "I'm",
+      name: 'Mehmet Berk Bozkurt',
+      roles: ['Software Developer', 'Spring Boot', 'Microservices', 'Spec-Driven Development'],
+      description:
+        'Software Developer with a strong foundation in the Java ecosystem and Microservices architecture, effectively leveraging modern AI-assisted engineering. Dedicated to building clean, efficient, and secure backend systems.',
+      viewProjects: 'View Projects',
+      contactMe: 'Contact Me',
+      codeFilename: 'Developer.java',
+      codeRole: 'Software Developer',
+      codeMotto: 'Clean, efficient and secure code.',
+      scrollAria: 'Scroll down',
+    },
+    about: {
+      title: 'About Me',
+      subtitle: 'Software developer passionate about crafting clean and secure systems.',
+      terminalTitle: 'about.sh',
+      command: 'cat about.txt',
+      bioParagraphs: [
+        'Computer Engineering graduate from Ege University with a solid foundation in the Java ecosystem and Microservices architecture.',
+        'During my Cyber Security internship, I conducted web application penetration testing using the OWASP Top 10 methodology, discovering critical vulnerabilities including SQLi, XSS, and IDOR.',
+        'Focused on engineering reliable backend solutions with Spring Boot while maintaining high standards for clean, resilient, and secure code.',
+      ],
+      skills: [
+        { category: 'Languages', items: ['Java', 'Python', 'SQL'] },
+        { category: 'Frameworks', items: ['Spring Boot', 'Hibernate', 'Spring Security', 'Selenium'] },
+        { category: 'Tools & Technologies', items: ['Docker', 'Kafka', 'Eureka', 'Feign', 'Zookeeper', 'Git', 'PostgreSQL', 'MSSQL', 'Linux'] },
+        { category: 'Architecture & Methodologies', items: ['Microservices', 'Hexagonal Architecture', 'DDD', 'REST API', 'Agile/Scrum'] },
+        { category: 'Security', items: ['OWASP Top 10', 'Penetration Testing', 'SQLi', 'XSS', 'IDOR'] },
+      ],
+    },
+    projects: {
+      title: 'Projects',
+      subtitle: 'Open-source work dynamically synchronized from GitHub.',
+      sourceCode: 'Source Code',
+      liveDemo: 'Live Demo',
+      prevSlideAria: 'Previous projects',
+      nextSlideAria: 'Next projects',
+      errorTitle: 'Failed to Load Projects',
+      errorCta: 'Visit My GitHub Profile',
+    },
+    contact: {
+      title: 'Contact',
+      emailLabel: 'Email',
+      copy: 'Copy',
+      copied: 'Copied!',
+      copyAria: 'Copy email address',
+    },
+    footer: {
+      rights: 'All rights reserved.',
+    },
+  },
+};

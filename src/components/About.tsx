@@ -1,17 +1,11 @@
 import { motion } from 'framer-motion';
 import { useInView } from './useInView';
+import { useLanguage } from '../context/LanguageContext';
 import './About.css';
-
-const skills = [
-    { category: 'Diller', items: ['Java', 'Python', 'SQL'] },
-    { category: 'Frameworks', items: ['Spring Boot', 'Hibernate', 'Spring Security', 'Selenium'] },
-    { category: 'Araçlar & Teknolojiler', items: ['Docker', 'Kafka', 'Eureka', 'Feign', 'Zookeeper', 'Git', 'PostgreSQL', 'MSSQL', 'Linux'] },
-    { category: 'Mimari & Metodoloji', items: ['Microservices', 'Hexagonal Architecture', 'DDD', 'REST API', 'Agile/Scrum'] },
-    { category: 'Güvenlik', items: ['OWASP Top 10', 'Penetration Testing', 'SQLi', 'XSS', 'IDOR'] },
-];
 
 export default function About() {
     const { ref, inView } = useInView(0.2);
+    const { t } = useLanguage();
 
     return (
         <section id="about" className="about section" ref={ref}>
@@ -21,9 +15,9 @@ export default function About() {
                     animate={inView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.6 }}
                 >
-                    <h2 className="section-title">Hakkımda</h2>
+                    <h2 className="section-title">{t.about.title}</h2>
                     <p className="section-subtitle">
-                        Güvenli kod yazmaya çalışan bir yazılım geliştiricisiyim.
+                        {t.about.subtitle}
                     </p>
                 </motion.div>
 
@@ -39,30 +33,17 @@ export default function About() {
                                 <span className="about__terminal-dot" />
                                 <span className="about__terminal-dot" />
                                 <span className="about__terminal-dot" />
-                                <span className="about__terminal-title">about.sh</span>
+                                <span className="about__terminal-title">{t.about.terminalTitle}</span>
                             </div>
                             <div className="about__terminal-body">
-                                <p><span className="about__prompt">$</span> cat hakkımda.txt</p>
+                                <p><span className="about__prompt">$</span> {t.about.command}</p>
                                 <br />
-                                <p>
-                                    Ege Üniversitesi Bilgisayar Mühendisliği mezunuyum.
-                                    Java ekosistemi ve Mikroservis mimarisi üzerine güçlü
-                                    bir temele sahibim.
-                                </p>
-                                <br />
-                                <p>
-                                    Yaptığım Siber Güvenlik stajımda
-                                    OWASP Top 10 metodolojisiyle web uygulamalarında
-                                    penetrasyon testleri gerçekleştirdim. SQL Injection,
-                                    XSS ve IDOR gibi kritik açıklıkları tespit ettim.
-                                </p>
-                                <br />
-                                <p>
-                                    Spring Boot ile güvenilir backend uygulamaları
-                                    geliştirmeye, temiz, verimli ve güvenli kod
-                                    yazmaya çalışıyorum.
-                                </p>
-                                <br />
+                                {t.about.bioParagraphs.map((para, idx) => (
+                                    <div key={idx}>
+                                        <p>{para}</p>
+                                        <br />
+                                    </div>
+                                ))}
                                 <p><span className="about__prompt">$</span> <span className="about__blink">_</span></p>
                             </div>
                         </div>
@@ -74,7 +55,7 @@ export default function About() {
                         animate={inView ? { opacity: 1, x: 0 } : {}}
                         transition={{ delay: 0.35, duration: 0.6 }}
                     >
-                        {skills.map((group, gi) => (
+                        {t.about.skills.map((group, gi) => (
                             <motion.div
                                 key={group.category}
                                 className="about__skill-group"

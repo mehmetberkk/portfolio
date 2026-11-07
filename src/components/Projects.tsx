@@ -1,94 +1,95 @@
+import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github } from 'lucide-react';
+import { AlertCircle, ExternalLink } from 'lucide-react';
 import { useInView } from './useInView';
-import projectsData from '../data/projects.json';
+import { useGithubRepos } from '../hooks/useGithubRepos';
+import { useLanguage } from '../context/LanguageContext';
+import { ProjectCard } from './ProjectCard';
+import { ProjectSkeleton } from './ProjectSkeleton';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from './ui/carousel';
 import './Projects.css';
 
-interface Project {
-    id: number;
-    title: string;
-    description: string;
-    technologies: string[];
-    github: string;
-    demo: string | null;
-    image: string | null;
-    featured: boolean;
-}
-
-const projects = projectsData as Project[];
-
 export default function Projects() {
-    const { ref, inView } = useInView(0.1);
+  const { ref, inView } = useInView(0.1);
+  const { projects, loading, error } = useGithubRepos();
+  const { t } = useLanguage();
 
-    return (
-        <section id="projects" className="projects section" ref={ref}>
-            <div className="container">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6 }}
-                >
-                    <h2 className="section-title">Projeler</h2>
-                    <p className="section-subtitle">
-                        Geliştirdiğim projeler.
-                    </p>
-                </motion.div>
+  return (
+    <section id="projects" className="projects section" ref={ref}>
+      <div className="container">
+        <Carousel
+          opts={{
+            align: 'start',
+            loop: false,
+          }}
+          className="w-full"
+        >
+          <div className="projects__header-wrap">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="section-title">{t.projects.title}</h2>
+            </motion.div>
 
-                <div className="projects__grid">
-                    {projects.map((project, i) => (
-                        <motion.article
-                            key={project.id}
-                            className={`projects__card ${project.featured ? 'projects__card--featured' : ''}`}
-                            initial={{ opacity: 0, y: 40 }}
-                            animate={inView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ delay: 0.15 + i * 0.12, type: 'spring', stiffness: 80, damping: 18 }}
-                        >
-                            <div className="projects__card-header">
-                                <span className="projects__card-index">
-                                    {String(i + 1).padStart(2, '0')}
-                                </span>
-                                {project.featured && (
-                                    <span className="projects__card-badge">Öne Çıkan</span>
-                                )}
-                            </div>
+            {!loading && projects.length > 3 && (
+              <div className="projects__nav">
+                <CarouselPrevious />
+                <CarouselNext />
+              </div>
+            )}
+          </div>
 
-                            <h3 className="projects__card-title">{project.title}</h3>
-                            <p className="projects__card-desc">{project.description}</p>
-
-                            <div className="projects__card-tags">
-                                {project.technologies.map(tech => (
-                                    <span key={tech} className="projects__card-tag">{tech}</span>
-                                ))}
-                            </div>
-
-                            <div className="projects__card-links">
-                                <a
-                                    href={project.github}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="projects__card-link"
-                                    aria-label={`${project.title} GitHub`}
-                                >
-                                    <Github size={18} />
-                                    <span>Kaynak Kod</span>
-                                </a>
-                                {project.demo && (
-                                    <a
-                                        href={project.demo}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="projects__card-link projects__card-link--demo"
-                                        aria-label={`${project.title} Demo`}
-                                    >
-                                        <ExternalLink size={18} />
-                                        <span>Demo</span>
-                                    </a>
-                                )}
-                            </div>
-                        </motion.article>
-                    ))}
-                </div>
+          {error && projects.length === 0 ? (
+            <div className="projects__error">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <AlertCircle size={20} color="#ef4444" />
+                <span className="projects__error-title">{t.projects.errorTitle}</span>
+              </div>
+              <p className="projects__error-desc">{error}</p>
+              <a
+                href="https://github.com/mehmetberkk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="projects__error-link"
+              >
+                <span>{t.projects.errorCta}</span>
+                <ExternalLink size={14} />
+              </a>
             </div>
-        </section>
-    );
+          ) : loading ? (
+            <div className="flex -ml-1 overflow-hidden w-full">
+              {[0, 1, 2].map((i) => (
+                <div key={i} className="pl-1 basis-full sm:basis-1/2 lg:basis-1/3">
+                  <div className="p-1 h-full">
+                    <ProjectSkeleton />
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <CarouselContent className="-ml-1">
+              {projects.map((project, index) => (
+                <CarouselItem
+                  key={project.id}
+                  className="pl-1 basis-full sm:basis-1/2 lg:basis-1/3"
+                >
+                  <div className="p-1 h-full">
+                    <ProjectCard project={project} index={index} />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          )}
+        </Carousel>
+      </div>
+    </section>
+  );
 }

@@ -1,7 +1,9 @@
+import { useLanguage } from '../context/LanguageContext';
 import './Footer.css';
 
 export default function Footer() {
     const year = new Date().getFullYear();
+    const { t } = useLanguage();
 
     return (
         <footer className="footer">
@@ -12,7 +14,7 @@ export default function Footer() {
                     <span className="footer__bracket">{'}'}</span>
                 </span>
                 <p className="footer__copy">
-                    © {year}
+                    © {year} Mehmet Berk Bozkurt. {t.footer.rights}
                 </p>
             </div>
         </footer>

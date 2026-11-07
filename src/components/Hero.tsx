@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown, Terminal } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 import './Hero.css';
 
-const roles = ['Software Developer', 'Spring Boot', 'Microservices', 'Cyber Security'];
+export default function Hero() {
+    const { t } = useLanguage();
 
-const codeSnippet = `public class Developer {
+    const codeSnippet = `public class Developer {
 
-    private String name = "Mehmet Berk";
-    private String role = "Software Dev";
+    private String name = "${t.hero.name}";
+    private String role = "${t.hero.codeRole}";
     private String[] stack = {
         "Java", "Spring Boot",
         "Kafka", "Docker"
@@ -16,12 +18,10 @@ const codeSnippet = `public class Developer {
     private boolean passionate = true;
 
     public String getMotto() {
-        return "Clean, efficient"
-             + " and secure code.";
+        return "${t.hero.codeMotto}";
     }
 }`;
 
-export default function Hero() {
     return (
         <section id="hero" className="hero">
             <div className="hero__grid container">
@@ -33,7 +33,7 @@ export default function Hero() {
                         transition={{ delay: 0.2, duration: 0.6 }}
                     >
                         <Terminal size={14} />
-                        <span>~/Mehmet Berk Bozkurt</span>
+                        <span>{t.hero.tag}</span>
                     </motion.div>
 
                     <motion.h1
@@ -42,9 +42,9 @@ export default function Hero() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.35, type: 'spring', stiffness: 80, damping: 18 }}
                     >
-                        Merhaba,
+                        {t.hero.greeting}
                         <br />
-                        ben <span className="hero__title-accent">Mehmet Berk Bozkurt</span>
+                        {t.hero.intro} <span className="hero__title-accent">{t.hero.name}</span>
                     </motion.h1>
 
                     <motion.div
@@ -54,7 +54,7 @@ export default function Hero() {
                         transition={{ delay: 0.55, duration: 0.5 }}
                     >
                         <span className="hero__cursor">&gt;</span>
-                        <TypingEffect words={roles} />
+                        <TypingEffect words={t.hero.roles} />
                     </motion.div>
 
                     <motion.p
@@ -63,9 +63,7 @@ export default function Hero() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.75, duration: 0.5 }}
                     >
-                        Java ekosistemi ve Mikroservis mimarisi üzerine güçlü bir temele
-                        sahip yazılım geliştiriciyim. Temiz, verimli ve güvenli kod
-                        yazmaya çalışıyorum.
+                        {t.hero.description}
                     </motion.p>
 
                     <motion.div
@@ -75,10 +73,10 @@ export default function Hero() {
                         transition={{ delay: 0.95, duration: 0.5 }}
                     >
                         <a href="#projects" className="hero__btn hero__btn--primary">
-                            Projelerimi Gör
+                            {t.hero.viewProjects}
                         </a>
                         <a href="#contact" className="hero__btn hero__btn--ghost">
-                            İletişime Geç
+                            {t.hero.contactMe}
                         </a>
                     </motion.div>
                 </div>
@@ -94,7 +92,7 @@ export default function Hero() {
                             <span className="hero__code-dot hero__code-dot--red" />
                             <span className="hero__code-dot hero__code-dot--yellow" />
                             <span className="hero__code-dot hero__code-dot--green" />
-                            <span className="hero__code-filename">Developer.java</span>
+                            <span className="hero__code-filename">{t.hero.codeFilename}</span>
                         </div>
                         <pre className="hero__code-content"><code>{codeSnippet}</code></pre>
                     </div>
@@ -106,7 +104,7 @@ export default function Hero() {
                 className="hero__scroll"
                 animate={{ y: [0, 8, 0] }}
                 transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-                aria-label="Aşağı kaydır"
+                aria-label={t.hero.scrollAria}
             >
                 <ChevronDown size={24} />
             </motion.a>
